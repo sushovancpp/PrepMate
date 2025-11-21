@@ -22,9 +22,6 @@ function Interview({ params }) {
     GetInterviewDetails();
   }, [interviewId]);
 
-  /**
-   * Fetch Interview Details
-   */
   const GetInterviewDetails = async () => {
     const result = await db
       .select()
@@ -35,57 +32,100 @@ function Interview({ params }) {
   };
 
   return (
-    <div className="my-10">
-      <h2 className="font-bold text-2xl">Let's Get Started</h2>
+    <div className="my-10 px-4 sm:px-6">
+
+      <h2 className="font-bold text-3xl text-white mb-10 text-center sm:text-left">
+        Let's Get Started 🚀
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        
+
         {/* LEFT SECTION */}
         <div className="flex flex-col my-5 gap-5">
-          <div className="flex flex-col p-5 rounded-lg border gap-5">
-            <h2 className="text-lg">
-              <strong>Job Role/Job Position: </strong>
+
+          {/* Glass Role Box */}
+          <div
+            className="
+              flex flex-col p-6 rounded-2xl 
+              bg-white/10 backdrop-blur-xl
+              border border-white/20 shadow-lg
+              text-white gap-4
+            "
+          >
+            <h2 className="text-base sm:text-lg">
+              <strong className="text-white/70">Job Role / Position: </strong>
               {interviewData?.jobPosition}
             </h2>
-            <h2 className="text-lg">
-              <strong>Job Description/Tech Stack: </strong>
+
+            <h2 className="text-base sm:text-lg">
+              <strong className="text-white/70">Job Description / Tech Stack: </strong>
               {interviewData?.jobDesc}
             </h2>
-            <h2 className="text-lg">
-              <strong>Years of Experience: </strong>
+
+            <h2 className="text-base sm:text-lg">
+              <strong className="text-white/70">Years of Experience: </strong>
               {interviewData?.jobExperience}
             </h2>
           </div>
 
-          <div className="p-5 border rounded-lg border-yellow-600 bg-blue-400">
-            <h2 className="flex gap-2 items-center text-white">
-              <Lightbulb />
-              <strong>NOTE</strong>
+          {/* NOTE BOX */}
+          <div
+            className="
+              p-6 rounded-2xl 
+              bg-gradient-to-r from-blue-500 to-blue-700
+              shadow-xl text-white
+            "
+          >
+            <h2 className="flex gap-2 items-center font-semibold text-lg">
+              <Lightbulb className="h-5 w-5" />
+              <span>NOTE</span>
             </h2>
-            <h2 className="mt-3 text-shadow-white">
+
+            <p className="mt-3 text-white/90 leading-relaxed">
               {process.env.NEXT_PUBLIC_INFORMATION}
-            </h2>
+            </p>
           </div>
         </div>
 
         {/* RIGHT SECTION */}
-        <div>
+        <div className="flex flex-col justify-start">
+
           {webCamEnabled ? (
             <Webcam
               onUserMedia={() => setWebCamEnabled(true)}
               onUserMediaError={() => setWebCamEnabled(false)}
               mirrored={true}
+              className="
+                rounded-2xl shadow-xl border border-white/20
+                bg-black/40 backdrop-blur-xl
+              "
               style={{
-                height: 200,
-                width: 200,
+                height: 350,
+                width: "100%",
               }}
             />
           ) : (
             <>
-              <WebcamIcon className="h-72 w-full my-7 p-20 bg-secondary rounded-lg border" />
+              <div
+                className="
+                  h-72 w-full flex items-center justify-center 
+                  bg-white/10 backdrop-blur-xl
+                  border border-white/20 rounded-2xl shadow-lg
+                "
+              >
+                <WebcamIcon className="
+                transition-all cursor-pointer hover:scale-105 hover:shadow-xl
+                h-28 w-28 text-white/40" />
+              </div>
+
               <Button
                 variant="ghost"
-                className="w-full"
+                className="
+                  w-full mt-6 text-white 
+                  bg-white/10 backdrop-blur-xl 
+                  border border-white/20 rounded-xl
+                  hover:bg-white/20 transition-all cursor-pointer
+                "
                 onClick={() => setWebCamEnabled(true)}
               >
                 Enable Web Cam and Microphone
@@ -96,11 +136,23 @@ function Interview({ params }) {
       </div>
 
       {/* START BUTTON */}
-      <div className="flex justify-end items-end">
+      <div className="
+      transition-all cursor-pointer hover:scale-105 hover:shadow-xl
+      flex justify-end mt-12">
         <Link href={`/dashboard/interview/${interviewId}/start`}>
-          <Button>Start Interview</Button>
+          <Button
+            className="
+            transition-all cursor-pointer hover:scale-105 hover:shadow-xl
+              px-6 py-3 text-white 
+              bg-blue-600 hover:bg-blue-700 
+              rounded-xl shadow-lg
+            "
+          >
+            Start Interview
+          </Button>
         </Link>
       </div>
+
     </div>
   );
 }

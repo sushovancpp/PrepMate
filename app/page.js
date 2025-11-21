@@ -38,21 +38,10 @@ export default function Home() {
             </Button>
           </Link>
         </div>
-
-        {/* Illustration */}
-        <div className="mt-10 lg:mt-0">
-          <Image
-            src="/webcam.png"
-            alt="AI Interview"
-            width={350}
-            height={350}
-            className="opacity-90 drop-shadow-2xl"
-          />
-        </div>
       </section>
 
       {/* Features Section */}
-      <section className="mt-24 px-10">
+      <section className="mt-54 px-10">
         <h3 className="text-center text-3xl font-bold">Why Choose PrepMate?</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
@@ -92,7 +81,7 @@ export default function Home() {
         <p className="text-gray-300 mt-3">Join thousands of users preparing for tech interviews the right way.</p>
 
         <Link href="/sign-up?redirect_url=/dashboard">
-          <Button className="mt-7 px-10 py-6 text-lg bg-purple-600 hover:bg-purple-700">
+          <Button className="mt-7 px-10 py-6 mb-8 text-lg bg-purple-600 hover:bg-purple-700">
             Start Free Now <CheckCircle className="ml-2" />
           </Button>
         </Link>

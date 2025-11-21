@@ -113,7 +113,7 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
 
       <div
         className="
-          relative p-3 rounded-2xl bg-white/10 backdrop-blur-xl
+          relative p-3 rounded-2xl bg-white/10 backdrop-blur-xl mt 4
           border border-white/20 shadow-[0_0_25px_rgba(161,100,255,0.55)]
           flex items-center justify-center
         "
@@ -125,7 +125,7 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
 
         <Webcam
           mirrored
-          className="rounded-xl z-10"
+          className="mt 4 rounded-xl z-10"
           style={{
             height: "100%",
             width: "100%",
@@ -138,7 +138,9 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
       <Button
         disabled={loading}
         variant="outline"
-        className="mt-6 px-6 py-4 rounded-xl backdrop-blur-md border-white/30 text-white hover:bg-white/10"
+        className="
+        transition-all cursor-pointer hover:scale-105 hover:shadow-xl
+        mt-6 px-6 py-4 rounded-xl backdrop-blur-md border-white/30 text-white hover:bg-white/10"
         onClick={StartStopRecording}
       >
         {isRecording ? (
