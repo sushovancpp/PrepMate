@@ -10,13 +10,17 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
+import { motion } from "framer-motion";
 
 function Header() {
   const path = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
       className="
         sticky top-0 z-50
         w-full
@@ -29,22 +33,24 @@ function Header() {
       <div className="flex items-center justify-between p-6">
 
         {/* Mobile Menu Icon */}
-        <button
-          className="md:hidden mr-3"
-          onClick={() => setOpen(true)}
-        >
+        <button className="md:hidden mr-3" onClick={() => setOpen(true)}>
           <Menu className="h-7 w-7 text-white" />
         </button>
 
         {/* Text Logo */}
         <Link href="/dashboard">
-          <h1 className="text-2xl font-extrabold tracking-wide text-white">
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="text-2xl font-extrabold tracking-wide text-white"
+          >
             PrepMate
-          </h1>
+          </motion.h1>
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-10 text-sm font-medium">
+        <ul className="transition-all duration-200 cursor-pointer hidden md:flex gap-10 text-sm font-medium">
           <li>
             <Link
               href="/dashboard"
@@ -80,20 +86,27 @@ function Header() {
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle className="text-lg font-semibold text-center">Dashboard</DrawerTitle>
+            <DrawerTitle className="transition-all duration-200 cursor-pointer text-lg font-semibold text-center">
+              Dashboard
+            </DrawerTitle>
           </DrawerHeader>
 
-          <div className="flex flex-col text-center gap-4 py-4 font-medium text-lg">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="transition-all duration-200 cursor-pointer flex flex-col text-center gap-4 py-4 font-medium text-lg"
+          >
             <Link href="/dashboard/interview" onClick={() => setOpen(false)}>
               Previous Interviews
             </Link>
             <Link href="/dashboard" onClick={() => setOpen(false)}>
               Create New Interview
             </Link>
-          </div>
+          </motion.div>
         </DrawerContent>
       </Drawer>
-    </div>
+    </motion.div>
   );
 }
 
