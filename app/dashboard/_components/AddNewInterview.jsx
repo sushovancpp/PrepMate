@@ -107,164 +107,77 @@ function AddNewInterview() {
     setLoading(false);
   };
 
-return (
-  <div>
-    {/* Add New Button */}
-    <div
-      className="
-        p-5
-        rounded-xl 
-        cursor-pointer 
-        transition-all 
-        bg-white/10 
-        backdrop-blur-xl 
-        border border-white/20 
-        shadow-[0_4px_20px_rgba(0,0,0,0.15)]
-        hover:scale-105 hover:bg-white/20
-      "
-      onClick={() => setOpenDailog(true)}
-    >
-      <h2 className="text-lg text-center font-semibold text-white">+ Add New</h2>
-    </div>
-
-    <Dialog open={openDailog} onOpenChange={setOpenDailog}>
-      <DialogContent
-        className="
-          max-w-xl w-[92%] sm:w-full 
-          bg-white/10 
-          backdrop-blur-2xl 
-          border border-white/30
-          shadow-[0_8px_32px_rgba(0,0,0,0.25)]
-          rounded-2xl
-          p-6 sm:p-8
-          text-white
-        "
+  return (
+    <div>
+      <div
+        className="p-10 border rounded-lg bg-secondary hover:scale-105 hover:shadow-md cursor-pointer transition-all"
+        onClick={() => setOpenDailog(true)}
       >
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">Describe Your Interview</DialogTitle>
-          <DialogDescription className="text-white/70">
-            Add job role, description, and experience.
-          </DialogDescription>
-        </DialogHeader>
+        <h2 className="text-lg text-center">+ Add New</h2>
+      </div>
 
-        {/* FORM */}
-        <form onSubmit={onSubmit} className="mt-4">
-          <div className="text-sm space-y-5">
+      <Dialog open={openDailog} onOpenChange={setOpenDailog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Describe Your Interview</DialogTitle>
+            <DialogDescription>
+              Add job role, description, and experience.
+            </DialogDescription>
+          </DialogHeader>
 
-            {/* Job Role */}
-            <div>
-              <label className="font-semibold">Job Role / Position</label>
-              <input
-                placeholder="Fullstack Developer"
-                required
-                onChange={(e) => setjobPosition(e.target.value)}
-                className="
-                  w-full p-3 mt-1 
-                  rounded-xl 
-                  bg-white/20 
-                  backdrop-blur-lg 
-                  border border-white/30
-                  placeholder-white/70 
-                  text-white
-                  focus:outline-none 
-                  focus:border-white/70
-                "
-              />
+          <form onSubmit={onSubmit} className="mt-4">
+            <div className="text-xs">
+              <div className="mt-7 my-3">
+                <label>Job Role / Position</label>
+                <input
+                  placeholder="Fullstack Developer"
+                  required
+                  onChange={(e) => setjobPosition(e.target.value)}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+
+              <div className="my-2">
+                <label>Job Description</label>
+                <textarea
+                  placeholder="React, NodeJS, MongoDB etc."
+                  required
+                  onChange={(e) => setjobDeDesc(e.target.value)}
+                  className="w-full h-24 p-2 border rounded-md resize-none"
+                />
+              </div>
+
+              <div className="my-1">
+                <label>Years of Experience</label>
+                <input
+                  type="number"
+                  placeholder="2"
+                  required
+                  onChange={(e) => setjobExperience(e.target.value)}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
             </div>
 
-            {/* Description */}
-            <div>
-              <label className="font-semibold">Job Description</label>
-              <textarea
-                placeholder="React, NodeJS, MongoDB etc."
-                required
-                onChange={(e) => setjobDeDesc(e.target.value)}
-                className="
-                  w-full h-28 p-3 mt-1 
-                  rounded-xl 
-                  bg-white/20 
-                  backdrop-blur-lg 
-                  border border-white/30
-                  placeholder-white/70 
-                  text-white
-                  resize-none
-                  focus:outline-none 
-                  focus:border-white/70
-                "
-              />
+            <div className="flex gap-5 justify-end mt-4">
+              <Button variant="ghost" type="button" onClick={() => setOpenDailog(false)}>
+                Cancel
+              </Button>
+              <Button type="submit" disabled={loading}>
+                {loading ? (
+                  <>
+                    <LoaderCircle className="animate-spin mr-2" /> Loading
+                  </>
+                ) : (
+                  "Start Interview"
+                )}
+              </Button>
             </div>
-
-            {/* Experience */}
-            <div>
-              <label className="font-semibold">Years of Experience</label>
-              <input
-                type="number"
-                placeholder="2"
-                required
-                onChange={(e) => setjobExperience(e.target.value)}
-                className="
-                  w-full p-3 mt-1 
-                  rounded-xl 
-                  bg-white/20 
-                  backdrop-blur-lg 
-                  border border-white/30
-                  placeholder-white/70 
-                  text-white
-                  focus:outline-none 
-                  focus:border-white/70
-                "
-              />
-            </div>
-
-          </div>
-
-          {/* BUTTONS */}
-          <div className="flex gap-4 justify-end mt-6">
-            <Button
-              variant="ghost"
-              type="button"
-              onClick={() => setOpenDailog(false)}
-              className="
-                transition-all cursor-pointer hover:scale-105 hover:shadow-xl 
-                bg-white/10 
-                text-white 
-                hover:bg-white/20 
-                rounded-xl
-                px-6
-              "
-            >
-              Cancel
-            </Button>
-
-            <Button
-              type="submit"
-              disabled={loading}
-              className="
-                transition-all cursor-pointer hover:scale-105 hover:shadow-xl
-                bg-blue-600 
-                hover:bg-blue-700 
-                text-white 
-                shadow-lg 
-                rounded-xl 
-                px-6
-              "
-            >
-              {loading ? (
-                <>
-                  <LoaderCircle className="
-                  animate-spin mr-2" /> Loading
-                </>
-              ) : (
-                "Start Interview"
-              )}
-            </Button>
-          </div>
-
-        </form>
-      </DialogContent>
-    </Dialog>
-  </div>
-);
+          </form>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
 }
 
 export default AddNewInterview;
