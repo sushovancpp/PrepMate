@@ -136,19 +136,12 @@ cd prepmate
 npm install
 ```
 
-### 2. Install proctoring packages (v2 only)
 
-These are required for face and object detection to work. Without them, the ProctorCamera component will fail to load models.
-
-```bash
-npm install @tensorflow/tfjs @tensorflow-models/blazeface @tensorflow-models/coco-ssd
-```
-
-### 3. Set up environment variables
+### 2. Set up environment variables
 
 Copy the example below into a new `.env.local` file in the project root and fill in your keys.
 
-### 4. Push the database schema
+### 3. Push the database schema
 
 ```bash
 npm run db:push
@@ -156,7 +149,7 @@ npm run db:push
 
 This creates the `mockInterview` and `userAnswer` tables in your Neon database.
 
-### 5. Run the development server
+### 4. Run the development server
 
 ```bash
 npm run dev
